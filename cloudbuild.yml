@@ -1,0 +1,31 @@
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - -t
+      - gcr.io/test1-227715/webserver
+      - -f
+      - Dockerfile
+      - .
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - gcr.io/test1-227715/webserver
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - gcr.io/test1-227715/webserver:latest
+  - name: gcr.io/cloud-builders/gcloud
+    args:
+      - --project=standard-cluster-1
+      - container
+      - clusters
+      - get-credentials
+      - --zone=asia-east2-a
+      - standard-cluster-1
+  - name: gcr.io/cloud-builders/kubectl
+    args:
+      - set
+      - image
+      - deployment/webserver
+      - webserver=gcr.io/test1-227715/webserver:latest
