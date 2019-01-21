@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  webserver:
+    build:
+            context: .
+            dockerfile: Dockerfile
+    hostname: weiwei-webservice
+    ports:
+            - "3900:3900"
+            - "8080:8080"
