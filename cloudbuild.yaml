@@ -19,13 +19,12 @@ steps:
       - gcr.io/$PROJECT_ID/$REPO_NAME:latest
   - name: gcr.io/cloud-builders/gcloud
     args:
-      #- --project=$_CLUSTER_PROJECT
-      - --project=test1-227715
+      - --project=$PROJECT_ID
       - container
       - clusters
       - get-credentials
-      - --zone=asia-east2-a
-      - standard-cluster-1
+      - --zone=$_CLUSTER_ZONE
+      - $_CLUSTER_NAME
   - name: gcr.io/cloud-builders/kubectl
     args:
       - set
@@ -33,5 +32,5 @@ steps:
       - deployment/webserver
       - webserver=gcr.io/$PROJECT_ID/$REPO_NAME:$REVISION_ID
     env:
-      - CLOUDSDK_COMPUTE_ZONE=asia-east2-a
-      - CLOUDSDK_CONTAINER_CLUSTER=standard-cluster-1
+      - CLOUDSDK_COMPUTE_ZONE=$_CLUSTER_ZONE
+      - CLOUDSDK_CONTAINER_CLUSTER=_CLUSTER_NAME
