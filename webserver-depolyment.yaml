@@ -18,4 +18,5 @@ spec:
       - name: webserver
         image: webserver
         ports:
-        - containerPort: 80
+        - containerPort: 8080
+        - containerPort: 3900
