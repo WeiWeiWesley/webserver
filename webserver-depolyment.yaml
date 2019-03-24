@@ -19,4 +19,6 @@ spec:
         image: webserver
         ports:
         - containerPort: 8080
+        - containerPort: 3700
+        - containerPort: 3800
         - containerPort: 3900

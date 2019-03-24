@@ -9,5 +9,5 @@ func StartStaticRouter() {
 	r.Static("/pic", "./public/pic")
 	r.Static("/burger", "./public/burger")
 
-	r.Run(":3900")
+	r.Run(":3800")
 }

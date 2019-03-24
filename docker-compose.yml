@@ -7,5 +7,7 @@ services:
             dockerfile: Dockerfile
     hostname: weiwei-webservice
     ports:
+            - "3700:3700"
+            - "3800:3800"
             - "3900:3900"
             - "8080:8080"
