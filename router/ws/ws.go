@@ -26,7 +26,7 @@ func StartWsRouter() {
 }
 
 // WS API command router
-func (ws *ConnLock) commandSwitch(command *WsCommand) error {
+func (ws *ConnLock) commandSwitch(command *ReqCmd) error {
 	var err error
 
 	switch command.Command {

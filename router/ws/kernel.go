@@ -11,8 +11,8 @@ import (
 	"github.com/gorilla/websocket"
 )
 
-//WsCommand websocket input
-type WsCommand struct {
+//ReqCmd websocket input
+type ReqCmd struct {
 	Command string `json:"command"`
 	Auth    string `json:"auth"`
 	Data    string `json:"data"`
@@ -75,7 +75,7 @@ func wsKeep() gin.HandlerFunc {
 				// Reset timer
 				timeout.Reset(idleLimit)
 
-				var command WsCommand
+				var command ReqCmd
 				err = json.Unmarshal(wsCommand, &command)
 				if err != nil {
 					fmt.Printf("%+v \n", err)
