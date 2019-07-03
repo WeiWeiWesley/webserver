@@ -1,11 +1,13 @@
 package ws
 
 import (
+	"encoding/json"
 	"errors"
+	"log"
 	"net/http"
+	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/gorilla/websocket"
 )
 
 //StartWsRouter StartWsRouter
@@ -24,17 +26,24 @@ func StartWsRouter() {
 }
 
 // WS API command router
-func commandSwitch(ws *websocket.Conn, command *WsCommand) error {
-	var (
-		err error
-	)
+func (ws *ConnLock) commandSwitch(command *WsCommand) error {
+	var err error
 
 	switch command.Command {
 	case "ping": //Ping
-		writeMessage(ws, "pong")
+		pong := make(map[string]interface{})
+		pong["command"] = command.Command
+		pong["resp_time"] = time.Now()
+
+		res, err := json.Marshal(pong)
+		if err != nil {
+			log.Println("JSON error:", err.Error())
+			break
+		}
+		ws.writeMessage(string(res))
 
 	default:
-		writeMessage(ws, "Command not exists")
+		ws.writeMessage("Command not exists")
 		return errors.New("Command \"" + command.Command + "\" not exists")
 	}
 
