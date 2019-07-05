@@ -6,6 +6,8 @@ services:
             context: .
             dockerfile: Dockerfile
     hostname: weiwei-webservice
+    environment:
+            - ENV=docker
     ports:
             - "3700:3700"
             - "3800:3800"

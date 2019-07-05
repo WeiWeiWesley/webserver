@@ -2,5 +2,5 @@ title = "sys_config"
 
 [redis_default]
 name = "redis_default"
-host = "127.0.0.1:6379"
+host = "docker:6379"
 max_conn = 10
