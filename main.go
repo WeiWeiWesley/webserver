@@ -15,7 +15,11 @@ func init() {
 		os.Setenv("ENV", "local")
 	}
 
-	redis.NewPool(common.RedisPoolKey, "127.0.0.1:6379", 50)
+	//LoadConfig
+	confing := common.LoadConfig()
+
+	//Add redis conn pool
+	redis.NewPool(common.RedisPoolKey, confing.RedisDefault.Host, confing.RedisDefault.MaxConn)
 }
 
 func main() {
