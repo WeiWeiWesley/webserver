@@ -1,6 +1,9 @@
 package router
 
-import "github.com/gin-gonic/gin"
+import (
+	"webserver/kernel/business"
+	"github.com/gin-gonic/gin"
+)
 
 //StartAPIRouter StartAPIRouter
 func StartAPIRouter() {
@@ -11,6 +14,8 @@ func StartAPIRouter() {
 			"message": "pong",
 		})
 	})
+
+	r.GET("/reids/keys", business.GetRedisData)
 
 	r.Run(":3700") // listen and serve on 0.0.0.0:8080
 }

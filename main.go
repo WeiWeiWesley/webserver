@@ -3,6 +3,8 @@ package main
 import (
 	"os"
 
+	"webserver/kernel/common"
+	"webserver/kernel/redis"
 	"webserver/router"
 	"webserver/router/ws"
 )
@@ -12,6 +14,8 @@ func init() {
 	if os.Getenv("ENV") == "" {
 		os.Setenv("ENV", "local")
 	}
+	
+	redis.NewPool(common.RedisPoolKey, "127.0.0.1:6379", 50)
 }
 
 func main() {
