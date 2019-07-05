@@ -13,3 +13,8 @@ func NewPool(hostName, host string, connLimit int) {
 func GetPool(poolName string) *redis.P {
 	return redis.GetPool(poolName)
 }
+
+//CloseRedis Close redis connection pool
+func CloseRedis() {
+	redis.CloseAllPool()
+}
