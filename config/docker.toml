@@ -4,3 +4,12 @@ title = "sys_config"
 name = "redis_default"
 host = "redis:6379"
 max_conn = 10
+
+[mysql_default]
+db = "test"
+host = "mysql"
+port = ":3306"
+username = "root"
+password = "qwe123"
+max_conn = 50
+log_mode = true

@@ -3,6 +3,12 @@
 	"ignore": "test",
 	"package": [
 		{
+			"checksumSHA1": "+MlivT6Gs5GAjDeY2d6ngHMSeS4=",
+			"path": "github.com/WeiWeiWesley/simple_orm",
+			"revision": "4227fe2904f159acac1f3ca83cfcd652813beb5d",
+			"revisionTime": "2019-07-09T07:51:24Z"
+		},
+		{
 			"checksumSHA1": "q9yimAdDvprMIMNuOlZ47Y/y49U=",
 			"path": "github.com/WeiWeiWesley/simple_redis",
 			"revision": "d455b000a756b8473b49ecd15c2b51439d86c85e",
@@ -44,6 +50,13 @@
 			"revision": ""
 		},
 		{
+			"checksumSHA1": "i3UtE7/Cn57eX1hO5Z0CqY/Eeb4=",
+			"origin": "github.com/WeiWeiWesley/simple_orm/vendor/github.com/go-sql-driver/mysql",
+			"path": "github.com/go-sql-driver/mysql",
+			"revision": "4227fe2904f159acac1f3ca83cfcd652813beb5d",
+			"revisionTime": "2019-07-09T07:51:24Z"
+		},
+		{
 			"checksumSHA1": "OaECjBPfByj/uEEGFqFhqK0Kgzw=",
 			"path": "github.com/golang/protobuf/proto",
 			"revision": "0cb4f732569330e7b40d8fcee91c41aafaaddc4f",
@@ -53,6 +66,27 @@
 			"checksumSHA1": "8KawKW6FJguwWz5cPvMg/ChmepE=",
 			"path": "github.com/gorilla/websocket",
 			"revision": ""
+		},
+		{
+			"checksumSHA1": "f7M/c3JpA+2BnvJFLF7n+8GE9E8=",
+			"origin": "github.com/WeiWeiWesley/simple_orm/vendor/github.com/jinzhu/gorm",
+			"path": "github.com/jinzhu/gorm",
+			"revision": "4227fe2904f159acac1f3ca83cfcd652813beb5d",
+			"revisionTime": "2019-07-09T07:51:24Z"
+		},
+		{
+			"checksumSHA1": "eECxSkwh0WmhLwaxHfkvcLOWS08=",
+			"origin": "github.com/WeiWeiWesley/simple_orm/vendor/github.com/jinzhu/gorm/dialects/mysql",
+			"path": "github.com/jinzhu/gorm/dialects/mysql",
+			"revision": "4227fe2904f159acac1f3ca83cfcd652813beb5d",
+			"revisionTime": "2019-07-09T07:51:24Z"
+		},
+		{
+			"checksumSHA1": "4eelJOSLZoDzLuaJvgilOBVNovU=",
+			"origin": "github.com/WeiWeiWesley/simple_orm/vendor/github.com/jinzhu/inflection",
+			"path": "github.com/jinzhu/inflection",
+			"revision": "4227fe2904f159acac1f3ca83cfcd652813beb5d",
+			"revisionTime": "2019-07-09T07:51:24Z"
 		},
 		{
 			"checksumSHA1": "wGqcDfEuwxbZney6VYWbpE7uNaE=",
