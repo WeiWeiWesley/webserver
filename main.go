@@ -4,6 +4,7 @@ import (
 	"os"
 
 	"webserver/kernel/common"
+	"webserver/kernel/db/mysql"
 	"webserver/kernel/redis"
 	"webserver/router"
 	"webserver/router/ws"
@@ -20,6 +21,9 @@ func init() {
 
 	//Add redis conn pool
 	redis.NewPool(common.RedisPoolKey, confing.RedisDefault.Host, confing.RedisDefault.MaxConn)
+
+	//Add MySQL db conn pool
+	mysql.NewPool(common.MySQLPoolKey, confing.MySQLDefault)
 }
 
 func main() {

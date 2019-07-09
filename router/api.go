@@ -17,5 +17,7 @@ func StartAPIRouter() {
 
 	r.GET("/reids/keys", business.GetRedisData)
 
-	r.Run(":3700") // listen and serve on 0.0.0.0:8080
+	r.GET("/mysql/ping", business.PingMySQL)
+
+	r.Run(":3700") // listen and serve on 0.0.0.0:3700
 }
