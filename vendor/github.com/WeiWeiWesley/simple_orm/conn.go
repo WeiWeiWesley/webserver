@@ -4,7 +4,6 @@ import (
 	"time"
 
 	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 // 設定連線字串
@@ -17,16 +16,16 @@ func setConnection(driver, host, port, database, username, password string) stri
 }
 
 // NewOrmConnection 建立連線
-func NewOrmConnection(connName string, conf *Host) (err error) {
+func NewOrmConnection(connName, driver string, conf *Host) (err error) {
 	connectName := setConnection(
-		"mysql",
+		driver,
 		conf.Host,
 		conf.Port,
 		conf.DB,
 		conf.Username,
 		conf.Password,
 	)
-	db, err := gorm.Open("mysql", connectName)
+	db, err := gorm.Open(driver, connectName)
 	if err == nil {
 		db.LogMode(conf.LogMode)
 	}

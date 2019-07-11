@@ -1,15 +1,15 @@
 package orm
 
 import (
-	"sync"
 	"errors"
+	"sync"
 
 	"github.com/jinzhu/gorm"
 )
 
 type pool struct {
 	Pool map[string]*DB
-	mu *sync.Mutex
+	mu   *sync.Mutex
 }
 
 //DB db conn
@@ -25,7 +25,7 @@ var (
 func init() {
 	DbPool = pool{
 		Pool: make(map[string]*DB),
-		mu: &sync.Mutex{},
+		mu:   &sync.Mutex{},
 	}
 }
 
@@ -46,4 +46,28 @@ func GetDbConn(connName string) (*DB, error) {
 	}
 
 	return nil, errors.New("DB conn not exists")
+}
+
+//CloseAllConn Close all connection pool in map
+func CloseAllConn() (err error) {
+	for connName := range DbPool.Pool {
+		err = DbPool.Pool[connName].Conn.Close()
+		if err != nil {
+			return
+		}
+		delete(DbPool.Pool, connName)
+	}
+
+	return
+}
+
+//CloseConn Close connection pool by name
+func CloseConn(connName string) (err error) {
+	err = DbPool.Pool[connName].Conn.Close()
+	if err != nil {
+		return
+	}
+	delete(DbPool.Pool, connName)
+
+	return
 }

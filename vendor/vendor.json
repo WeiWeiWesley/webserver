@@ -3,10 +3,16 @@
 	"ignore": "test",
 	"package": [
 		{
-			"checksumSHA1": "+MlivT6Gs5GAjDeY2d6ngHMSeS4=",
+			"checksumSHA1": "Pc2ORQp+VY3Un/dkh4QwLC7R6lE=",
+			"origin": "webserver/vendor/github.com/BurntSushi/toml",
+			"path": "github.com/BurntSushi/toml",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "6UdXwrmWza8orvVR3He7tFweJGo=",
 			"path": "github.com/WeiWeiWesley/simple_orm",
-			"revision": "4227fe2904f159acac1f3ca83cfcd652813beb5d",
-			"revisionTime": "2019-07-09T07:51:24Z"
+			"revision": "08a28dcf3fc8e3c69d4be32114a9a5af947e4b9e",
+			"revisionTime": "2019-07-11T07:55:31Z"
 		},
 		{
 			"checksumSHA1": "q9yimAdDvprMIMNuOlZ47Y/y49U=",
@@ -53,8 +59,8 @@
 			"checksumSHA1": "i3UtE7/Cn57eX1hO5Z0CqY/Eeb4=",
 			"origin": "github.com/WeiWeiWesley/simple_orm/vendor/github.com/go-sql-driver/mysql",
 			"path": "github.com/go-sql-driver/mysql",
-			"revision": "4227fe2904f159acac1f3ca83cfcd652813beb5d",
-			"revisionTime": "2019-07-09T07:51:24Z"
+			"revision": "08a28dcf3fc8e3c69d4be32114a9a5af947e4b9e",
+			"revisionTime": "2019-07-11T07:55:31Z"
 		},
 		{
 			"checksumSHA1": "OaECjBPfByj/uEEGFqFhqK0Kgzw=",
@@ -71,22 +77,22 @@
 			"checksumSHA1": "f7M/c3JpA+2BnvJFLF7n+8GE9E8=",
 			"origin": "github.com/WeiWeiWesley/simple_orm/vendor/github.com/jinzhu/gorm",
 			"path": "github.com/jinzhu/gorm",
-			"revision": "4227fe2904f159acac1f3ca83cfcd652813beb5d",
-			"revisionTime": "2019-07-09T07:51:24Z"
+			"revision": "08a28dcf3fc8e3c69d4be32114a9a5af947e4b9e",
+			"revisionTime": "2019-07-11T07:55:31Z"
 		},
 		{
 			"checksumSHA1": "eECxSkwh0WmhLwaxHfkvcLOWS08=",
 			"origin": "github.com/WeiWeiWesley/simple_orm/vendor/github.com/jinzhu/gorm/dialects/mysql",
 			"path": "github.com/jinzhu/gorm/dialects/mysql",
-			"revision": "4227fe2904f159acac1f3ca83cfcd652813beb5d",
-			"revisionTime": "2019-07-09T07:51:24Z"
+			"revision": "08a28dcf3fc8e3c69d4be32114a9a5af947e4b9e",
+			"revisionTime": "2019-07-11T07:55:31Z"
 		},
 		{
 			"checksumSHA1": "4eelJOSLZoDzLuaJvgilOBVNovU=",
 			"origin": "github.com/WeiWeiWesley/simple_orm/vendor/github.com/jinzhu/inflection",
 			"path": "github.com/jinzhu/inflection",
-			"revision": "4227fe2904f159acac1f3ca83cfcd652813beb5d",
-			"revisionTime": "2019-07-09T07:51:24Z"
+			"revision": "08a28dcf3fc8e3c69d4be32114a9a5af947e4b9e",
+			"revisionTime": "2019-07-11T07:55:31Z"
 		},
 		{
 			"checksumSHA1": "wGqcDfEuwxbZney6VYWbpE7uNaE=",
@@ -126,7 +132,7 @@
 			"revisionTime": "2018-08-08T16:52:45Z"
 		},
 		{
-			"checksumSHA1": "U7w+ajyEPXYppg1ndfzR4PsMscc=",
+			"checksumSHA1": "LeV5qDBHhQEbFMh9PARudS6ltos=",
 			"path": "golang.org/x/sys/unix",
 			"revision": "4e1fef5609515ec7a2cee7b5de30ba6d9b438cbf",
 			"revisionTime": "2018-08-13T06:52:15Z"
