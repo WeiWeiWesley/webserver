@@ -7,8 +7,8 @@ import (
 )
 
 //NewPool Add a new pool
-func NewPool(hostName string, conf common.MySQL) error {
-	return orm.NewOrmConnection(hostName, &orm.Host{
+func NewPool(hostName, driver string, conf common.MySQL) error {
+	return orm.NewOrmConnection(hostName, driver, &orm.Host{
 		DB:       conf.DB,
 		Host:     conf.Host,
 		Port:     conf.Port,
