@@ -1,15 +1,51 @@
 version: '3'
 
 services:
-  webserver:
-    build:
-            context: .
-            dockerfile: Dockerfile
-    hostname: weiwei-webservice
-    environment:
-            - ENV=docker
-    ports:
-            - "3700:3700"
-            - "3800:3800"
-            - "3900:3900"
-            - "8080:8080"
+    mysql:
+        image: mysql:5.7
+        restart: always
+        ports:
+                - "3306:3306"
+        volumes:
+                - db:/var/lib/mysql
+        environment:
+                MYSQL_USER: root
+                MYSQL_ROOT_PASSWORD: qwe123
+                MYSQL_DATABASE: test
+        networks:
+                - internal_network
+
+    redis:
+        image: redis
+        restart: always
+        ports:
+            - "6379:6379"
+        volumes:
+            - cache:/data
+        networks:
+            - internal_network
+
+    webserver:
+        build:
+                context: .
+                dockerfile: Dockerfile
+        hostname: weiwei-webservice
+        environment:
+                - ENV=docker
+        ports:
+                - "3700:3700"
+                - "3800:3800"
+                - "3900:3900"
+                - "8080:8080"
+        networks:
+                - internal_network
+
+volumes:
+    cache:
+        driver: "local"
+    db:
+        driver: "local"
+
+networks:
+    internal_network:
+        driver: bridge
