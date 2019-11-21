@@ -2,9 +2,10 @@ package common
 
 //Config 設定檔
 type Config struct {
-	ENV          string `toml:"env"`
-	RedisDefault Redis  `toml:"redis_default"`
-	MySQLDefault MySQL  `toml:"mysql_default"`
+	ENV          string    `toml:"env"`
+	RedisDefault Redis     `toml:"redis_default"`
+	MySQLDefault MySQL     `toml:"mysql_default"`
+	Service      []Service `toml:"service"`
 }
 
 //Redis Redis config
@@ -30,4 +31,11 @@ type HTTPResponse struct {
 	Code    int         `json:"code"`
 	Message string      `json:"message"`
 	Data    interface{} `json:"data"`
+}
+
+//Service Service
+type Service struct {
+	Name string `toml:"name"`
+	IP   string `toml:"ip"`
+	Port string `toml:"port"`
 }

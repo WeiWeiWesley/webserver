@@ -19,5 +19,7 @@ func StartAPIRouter() {
 
 	r.GET("/mysql/ping", business.PingMySQL)
 
+	r.GET("/rpc/math/double", business.CallRPCService)
+
 	r.Run(":3700") // listen and serve on 0.0.0.0:3700
 }

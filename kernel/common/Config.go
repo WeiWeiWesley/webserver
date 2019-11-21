@@ -17,6 +17,11 @@ func LoadConfig() *Config {
 		return conf
 	}
 
+	//Check ENV
+	if os.Getenv("ENV") == "" {
+		os.Setenv("ENV", "local")
+	}
+
 	// 載入config
 	cf := "config/" + os.Getenv("ENV") + ".toml"
 	if _, err := toml.DecodeFile(cf, &conf); err != nil {

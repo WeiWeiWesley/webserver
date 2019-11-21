@@ -5,6 +5,7 @@ import (
 	"webserver/kernel/common"
 	"webserver/kernel/db/mysql"
 	"webserver/kernel/redis"
+	"webserver/kernel/rpc"
 
 	"github.com/gin-gonic/gin"
 )
@@ -59,5 +60,41 @@ func PingMySQL(c *gin.Context) {
 		Code:    http.StatusOK,
 		Message: "",
 		Data:    "ping success",
+	})
+}
+
+//CallRPCService CallRPCService
+func CallRPCService(c *gin.Context) {
+	var param struct {
+		Num int64 `form:"num"`
+	}
+	c.BindQuery(&param)
+
+	conn, err := rpc.FetchConn("Math")
+	defer rpc.PutBack(conn)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.HTTPResponse{
+			Code:    http.StatusInternalServerError,
+			Message: err.Error(),
+			Data:    nil,
+		})
+		return
+	}
+
+	var res int64
+	err = rpc.Call(conn, "Math.Double", param.Num, &res)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.HTTPResponse{
+			Code:    http.StatusInternalServerError,
+			Message: err.Error(),
+			Data:    nil,
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.HTTPResponse{
+		Code:    http.StatusOK,
+		Message: "",
+		Data:    res,
 	})
 }

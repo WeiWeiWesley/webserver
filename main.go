@@ -1,21 +1,15 @@
 package main
 
 import (
-	"os"
-
 	"webserver/kernel/common"
 	"webserver/kernel/db/mysql"
 	"webserver/kernel/redis"
+	_ "webserver/kernel/rpc"
 	"webserver/router"
 	"webserver/router/ws"
 )
 
 func init() {
-	//Check ENV
-	if os.Getenv("ENV") == "" {
-		os.Setenv("ENV", "local")
-	}
-
 	//LoadConfig
 	confing := common.LoadConfig()
 

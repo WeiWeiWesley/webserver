@@ -13,3 +13,8 @@ username = "root"
 password = "qwe123"
 max_conn = 50
 log_mode = true
+
+[[service]]
+name = "Math"
+ip = "127.0.0.1"
+port = "50051"
