@@ -18,3 +18,8 @@ log_mode = true
 name = "Math"
 ip = "127.0.0.1"
 port = "50051"
+
+[[service]]
+name = "Echo"
+ip = "127.0.0.1"
+port = "50051"

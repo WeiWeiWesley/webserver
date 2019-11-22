@@ -7,4 +7,6 @@ const (
 	MySQLPoolKey string = "mysql"
 	//MySQLDriver db driver MySQL
 	MySQLDriver string = "mysql"
+	//ServiceMath math service
+	ServiceMath = "Math"
 )

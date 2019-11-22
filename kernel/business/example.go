@@ -70,8 +70,8 @@ func CallRPCService(c *gin.Context) {
 	}
 	c.BindQuery(&param)
 
-	conn, err := rpc.FetchConn("Math")
-	defer rpc.PutBack(conn)
+	conn, err := rpc.FetchConn(common.ServiceMath)
+	defer conn.PutBack()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, common.HTTPResponse{
 			Code:    http.StatusInternalServerError,
@@ -82,7 +82,7 @@ func CallRPCService(c *gin.Context) {
 	}
 
 	var res int64
-	err = rpc.Call(conn, "Math.Double", param.Num, &res)
+	err = conn.Call("Math.Double", param.Num, &res)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, common.HTTPResponse{
 			Code:    http.StatusInternalServerError,

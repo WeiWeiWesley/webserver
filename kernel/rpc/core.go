@@ -50,14 +50,14 @@ func FetchConn(serviceName string) (*Link, error) {
 
 	rand.Seed(time.Now().UnixNano())
 	var retryTime time.Duration = 10
-	if conn, err := getConn(serviceName, linkPool[serviceName][rand.Intn(maxLink)]); err == nil {
+	if conn, err := linkPool[serviceName][rand.Intn(maxLink)].getConn(serviceName); err == nil {
 		return conn, nil
 	}
 
 	// 嘗試取得其他連線
 	for i := 0; i < 10; i++ {
 		time.Sleep(retryTime + time.Duration(rand.Intn(500))*time.Millisecond)
-		if conn, err := getConn(serviceName, linkPool[serviceName][rand.Intn(maxLink)]); err == nil {
+		if conn, err := linkPool[serviceName][rand.Intn(maxLink)].getConn(serviceName); err == nil {
 			return conn, nil
 		}
 	}
@@ -66,30 +66,30 @@ func FetchConn(serviceName string) (*Link, error) {
 }
 
 // GetConn get connection
-func getConn(serviceName string, conn *Link) (*Link, error) {
+func (c *Link) getConn(serviceName string) (*Link, error) {
 	select {
-	case conn.Lock <- true:
-		if conn.Client == nil {
+	case c.Lock <- true:
+		if c.Client == nil {
 			for _, service := range serviceConfig {
 				if service.Name == serviceName {
-					conn.Client, _ = jsonrpc.Dial("tcp", service.IP+":"+service.Port)
+					c.Client, _ = jsonrpc.Dial("tcp", service.IP+":"+service.Port)
 				}
 			}
 		}
-		return conn, nil
+		return c, nil
 	default:
 		return nil, errors.New("occupied")
 	}
 }
 
 // PutBack put back connection
-func PutBack(conn *Link) error {
-	if conn == nil {
+func (c *Link) PutBack() error {
+	if c == nil {
 		return nil
 	}
 
 	select {
-	case <-conn.Lock:
+	case <-c.Lock:
 		return nil
 	default:
 		return errors.New("not in used")
@@ -97,14 +97,14 @@ func PutBack(conn *Link) error {
 }
 
 // Call 執行呼叫
-func Call(conn *Link, serviceMethod string, args interface{}, reply interface{}) error {
+func (c *Link) Call(serviceMethod string, args interface{}, reply interface{}) error {
 	// call發生錯誤 嘗試重新連線再call
-	err := conn.Client.Call(serviceMethod, args, reply)
+	err := c.Client.Call(serviceMethod, args, reply)
 	if err != nil {
 		for i := 0; i < maxReCall; i++ {
 			time.Sleep(time.Duration(rand.Intn(500)) * time.Millisecond)
-			repairLink(strings.Split(serviceMethod, ".")[0], conn)
-			err = conn.Client.Call(serviceMethod, args, reply)
+			c.repairLink(strings.Split(serviceMethod, ".")[0])
+			err = c.Client.Call(serviceMethod, args, reply)
 			if err == nil {
 				break
 			}
@@ -115,11 +115,11 @@ func Call(conn *Link, serviceMethod string, args interface{}, reply interface{})
 }
 
 // RepairLink 重新連線
-func repairLink(serviceName string, conn *Link) (err error) {
+func (c *Link) repairLink(serviceName string) (err error) {
 	fmt.Println("Repair Link...")
 	for _, service := range serviceConfig {
 		if service.Name == serviceName {
-			conn.Client, _ = jsonrpc.Dial("tcp", service.IP+":"+service.Port)
+			c.Client, _ = jsonrpc.Dial("tcp", service.IP+":"+service.Port)
 		}
 	}
 	return
